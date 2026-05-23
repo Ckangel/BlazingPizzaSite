@@ -11,6 +11,7 @@ C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.AssemblyInfoInp
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.AssemblyInfo.cs
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.csproj.CoreCompileInputs.cache
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.sourcelink.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\staticwebassets\msbuild.BlazingPizzaSite.Microsoft.AspNetCore.StaticWebAssets.props
@@ -27,4 +28,3 @@ C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\refint\BlazingPizzaSite.dll
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.pdb
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.genruntimeconfig.cache
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\ref\BlazingPizzaSite.dll
-C:\Users\Dell\BlazingPizzaSite\obj\Debug\net8.0\BlazingPizzaSite.sourcelink.json
