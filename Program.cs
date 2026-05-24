@@ -1,4 +1,8 @@
-using BlazingPizzaSite.Components;
+using BlazingPizzaSite;
+using BlazingPizzaSite.Data;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,20 +10,29 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Register EF Core with SQLite
+builder.Services.AddDbContext<PizzaStoreContext>(options =>
+    options.UseSqlite("Data Source=pizza.db"));
+
 var app = builder.Build();
+
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<PizzaStoreContext>();
+    SeedData.Initialize(context);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-app.UseAntiforgery();
+app.UseRouting();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

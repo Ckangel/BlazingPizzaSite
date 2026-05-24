@@ -1,0 +1,11 @@
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\EmbeddedAttribute.cs
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\ValidatableTypeAttribute.cs
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.AssemblyInfoInputs.cache
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.AssemblyInfo.cs
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.csproj.CoreCompileInputs.cache
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.RazorAssemblyInfo.cache
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.RazorAssemblyInfo.cs
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.sourcelink.json

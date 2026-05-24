@@ -1,89 +1,49 @@
-@page "/myorders/{orderId}"
-@inject NavigationManager NavigationManager
+@page "/orderdetails/{orderId:int}"
+@using BlazingPizza
 @inject HttpClient HttpClient
 
-<div class="top-bar">
-    <a class="logo" href="">
-        <img src="img/logo.svg" />
-    </a>
+<h3>Order Details</h3>
 
-    <NavLink href="" class="nav-tab" Match="NavLinkMatch.All">
-        <img src="img/pizza-slice.svg" />
-        <div>Get Pizza</div>
-    </NavLink>
+@if (orderWithStatus == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="order-details">
+        <h4>Order #@orderWithStatus.Order.OrderId</h4>
+        <p>Status: <strong>@orderWithStatus.StatusText</strong></p>
+        <p>Placed: @orderWithStatus.Order.CreatedTime.ToLocalTime()</p>
 
-    <NavLink href="myorders" class="nav-tab">
-        <img src="img/bike.svg" />
-        <div>My Orders</div>
-    </NavLink>
+        <h5>Pizzas</h5>
+        <ul>
+            @foreach (var pizza in orderWithStatus.Order.Pizzas)
+            {
+                <li>
+                    @pizza.Size Pizza - ₵@pizza.GetTotalPrice()
+                    <ul>
+                        @foreach (var topping in pizza.Toppings)
+                        {
+                            <li>@topping.Name (₵@topping.Price)</li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
 
-</div>
-
-<div class="main">
-    @if (invalidOrder)
-    {
-        <h2>Order not found</h2>
-        <p>We're sorry but this order no longer exists.</p>
-    }
-    else if (orderWithStatus == null)
-    {
-        <div class="track-order">
-            <div class="track-order-title">
-                <h2>
-                    <text>Loading...</text>
-                </h2>
-                <p class="ml-auto mb-0">
-                    ...
-                </p>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="track-order">
-            <div class="track-order-title">
-                <h2>
-                    Order placed @orderWithStatus.Order.CreatedTime.ToLongDateString()
-                </h2>
-                <p class="ml-auto mb-0">
-                    Status: <strong>@orderWithStatus.StatusText</strong>
-                </p>
-            </div>
-            <div class="track-order-body">
-                <div class="track-order-details">
-                    @foreach (var pizza in orderWithStatus.Order.Pizzas)
-                    {
-                        <p>
-                            <strong>
-                                @(pizza.Size)"
-                                @pizza.Special.Name
-                                (£@pizza.GetFormattedTotalPrice())
-                            </strong>
-                        </p>
-                    }
-                </div>
-            </div>
-        </div>
-    }
-</div>
+        <p><strong>Total: ₵@orderWithStatus.Order.GetTotalPrice()</strong></p>
+    </div>
+}
 
 @code {
-    [Parameter] public int OrderId { get; set; }
+    [Parameter]
+    public int orderId { get; set; }
 
-    OrderWithStatus orderWithStatus;
-    bool invalidOrder = false;
+    private OrderWithStatus orderWithStatus;
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            orderWithStatus = await HttpClient.GetFromJsonAsync<OrderWithStatus>(
-                $"{NavigationManager.BaseUri}orders/{OrderId}");
-        }
-        catch (Exception ex)
-        {
-            invalidOrder = true;
-            Console.Error.WriteLine(ex);
-        }
+        // Fetch order from server API
+        orderWithStatus = await HttpClient.GetFromJsonAsync<OrderWithStatus>($"orders/{orderId}");
     }
 }

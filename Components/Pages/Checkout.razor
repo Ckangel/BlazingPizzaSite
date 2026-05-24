@@ -1,0 +1,38 @@
+@page "/checkout"
+@using BlazingPizza
+@inject HttpClient HttpClient
+@inject OrderState OrderState
+@inject NavigationManager NavigationManager
+
+<h3>Checkout</h3>
+
+<EditForm Model="@OrderState.Order" OnValidSubmit="PlaceOrder">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name:</label>
+        <InputText @bind-Value="OrderState.Order.CustomerName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Address:</label>
+        <InputText @bind-Value="OrderState.Order.CustomerAddress" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</EditForm>
+
+@code {
+    async Task PlaceOrder()
+    {
+        // Post order to server API
+        var response = await HttpClient.PostAsJsonAsync("orders", OrderState.Order);
+
+        if (response.IsSuccessStatusCode)
+        {
+            OrderState.ResetOrder();
+            NavigationManager.NavigateTo("myorders");
+        }
+    }
+}

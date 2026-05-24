@@ -1,5 +1,40 @@
 @page "/"
+@using BlazingPizza
+@inject HttpClient HttpClient
 
-<h1>Welcome to BlazingPizzaSite!</h1>
+<h3>Pizza Specials</h3>
 
-<p>This is the home page of your Blazor Server app.</p>
+@if (specials == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="specials-list">
+        @foreach (var special in specials)
+        {
+            <div class="special-card">
+                <h4>@special.Size Pizza</h4>
+                <p>
+                    Base Price: ₵@special.GetBasePrice()
+                </p>
+                <ul>
+                    @foreach (var topping in special.Toppings)
+                    {
+                        <li>@topping.Name (₵@topping.Price)</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private List<Pizza> specials;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch specials from server API
+        specials = await HttpClient.GetFromJsonAsync<List<Pizza>>("specials");
+    }
+}
