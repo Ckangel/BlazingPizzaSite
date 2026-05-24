@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingPizzaSite
+namespace BlazingPizzaSite.Data
 {
     public class PizzaStoreContext : DbContext
     {
@@ -9,13 +9,12 @@ namespace BlazingPizzaSite
         {
         }
 
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Pizza> Pizzas { get; set; }
-        public DbSet<Topping> Toppings { get; set; }
+        public DbSet<Order> Orders { get; set; } = default!;
+        public DbSet<Pizza> Pizzas { get; set; } = default!;
+        public DbSet<Topping> Toppings { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure relationships
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.Pizzas)
                 .WithOne()

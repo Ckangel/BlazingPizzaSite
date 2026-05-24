@@ -1,21 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace BlazingPizzaSite.Data
 {
     public static class SeedData
     {
         public static void Initialize(PizzaStoreContext context)
         {
-            // Ensure database is created
             context.Database.EnsureCreated();
 
-            // If specials already exist, don’t seed again
             if (context.Pizzas.Any())
             {
                 return;
             }
 
-            // Seed pizza specials
             var specials = new List<Pizza>
             {
                 new Pizza

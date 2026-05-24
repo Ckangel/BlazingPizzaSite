@@ -1,15 +1,12 @@
-using System;
-using System.Collections.Generic;
-
 namespace BlazingPizzaSite
 {
     public class Pizza
     {
         public int PizzaId { get; set; }
         public string Size { get; set; } = "Medium";
-        public List<Topping> Toppings { get; set; } = new List<Topping>();
 
-        // Base price depending on size
+        public List<Topping> Toppings { get; set; } = new();
+
         public decimal GetBasePrice()
         {
             return Size switch
@@ -21,22 +18,9 @@ namespace BlazingPizzaSite
             };
         }
 
-        // Total price = base price + toppings
         public decimal GetTotalPrice()
         {
-            decimal total = GetBasePrice();
-            foreach (var topping in Toppings)
-            {
-                total += topping.Price;
-            }
-            return total;
+            return GetBasePrice() + Toppings.Sum(t => t.Price);
         }
-    }
-
-    public class Topping
-    {
-        public int ToppingId { get; set; }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
     }
 }

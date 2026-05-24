@@ -1,5 +1,5 @@
 @page "/"
-@using BlazingPizza
+@using BlazingPizzaSite
 @inject HttpClient HttpClient
 
 <h3>Pizza Specials</h3>
@@ -8,6 +8,10 @@
 {
     <p><em>Loading...</em></p>
 }
+else if (!specials.Any())
+{
+    <p>No specials available.</p>
+}
 else
 {
     <div class="specials-list">
@@ -15,9 +19,7 @@ else
         {
             <div class="special-card">
                 <h4>@special.Size Pizza</h4>
-                <p>
-                    Base Price: ₵@special.GetBasePrice()
-                </p>
+                <p>Base Price: ₵@special.GetBasePrice()</p>
                 <ul>
                     @foreach (var topping in special.Toppings)
                     {
@@ -30,11 +32,11 @@ else
 }
 
 @code {
-    private List<Pizza> specials;
+    private List<Pizza> specials = new();
 
     protected override async Task OnInitializedAsync()
     {
-        // Fetch specials from server API
-        specials = await HttpClient.GetFromJsonAsync<List<Pizza>>("specials");
+        specials = await HttpClient.GetFromJsonAsync<List<Pizza>>("specials")
+                   ?? new List<Pizza>();
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace BlazingPizzaSite
 {
     public class OrderWithStatus

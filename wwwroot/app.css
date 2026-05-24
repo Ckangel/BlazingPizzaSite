@@ -49,3 +49,55 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+/* Style for all nav links */
+.nav-link {
+    color: #333;
+    padding: 8px 12px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.nav-link:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* Active link styling */
+.nav-link.active {
+    font-weight: bold;
+    background-color: #0078d7; /* Microsoft blue */
+    color: #fff !important;
+    border-radius: 4px;
+}
+
+/* Dark mode base styles */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+/* Nav links in dark mode */
+body.dark-mode .nav-link {
+    color: #ccc;
+    padding: 8px 12px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect in dark mode */
+body.dark-mode .nav-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Active link styling in dark mode */
+body.dark-mode .nav-link.active {
+    font-weight: bold;
+    background-color: #0078d7; /* Microsoft blue highlight */
+    color: #fff !important;
+    border-radius: 4px;
+}

@@ -1,23 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BlazingPizza.Data;
 
-namespace BlazingPizza.Controllers;
-
-[Route("specials")]
-[ApiController]
-public class SpecialsController : Controller
+namespace BlazingPizzaSite.Controllers
 {
-    private readonly PizzaStoreContext _db;
-
-    public SpecialsController(PizzaStoreContext db)
+    [ApiController]
+    [Route("specials")]
+    public class SpecialsController : ControllerBase
     {
-        _db = db;
-    }
+        private readonly PizzaStoreContext _context;
 
-    [HttpGet]
-    public async Task<ActionResult<List<PizzaSpecial>>> GetSpecials()
-    {
-        return (await _db.Specials.ToListAsync()).OrderByDescending(s => s.BasePrice).ToList();
+        public SpecialsController(PizzaStoreContext context)
+        {
+            _context = context;
+        }
+
+        // GET /specials
+        [HttpGet]
+        public IEnumerable<Pizza> GetSpecials()
+        {
+            return _context.Pizzas
+                .Include(p => p.Toppings)
+                .ToList();
+        }
     }
 }
