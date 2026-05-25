@@ -14,4 +14,19 @@
             @Body
         </div>
     </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            © 2026 - Charles Kingsley Ajeigbe | Ghana
+        </div>
+    </footer>
+
 </div>
+
+@code {
+    // Utility method for formatting amounts in Ghanaian Cedis
+    public static string FormatCedis(decimal amount)
+    {
+        return string.Format("₵{0:N2}", amount);
+    }
+}

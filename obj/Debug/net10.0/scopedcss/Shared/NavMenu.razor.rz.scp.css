@@ -1,0 +1,43 @@
+/* Sidebar container */
+.sidebar[b-dub1wwuzau] {
+    background-color: #f8f9fa; /* light gray background */
+    min-height: 100vh;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+}
+
+/* Nav list */
+.nav-menu ul[b-dub1wwuzau] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Nav items */
+.nav-menu .nav-item[b-dub1wwuzau] {
+    margin-bottom: 0.5rem;
+}
+
+/* Nav links */
+.nav-menu .nav-link[b-dub1wwuzau] {
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover effect */
+.nav-menu .nav-link:hover[b-dub1wwuzau] {
+    background-color: #e9ecef;
+    color: #000;
+}
+
+/* Active link */
+.nav-menu .nav-link.active[b-dub1wwuzau] {
+    background-color: #0078d7; /* Microsoft blue */
+    color: #fff !important;
+    font-weight: bold;
+}

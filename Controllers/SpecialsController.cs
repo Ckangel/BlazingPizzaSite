@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using BlazingPizzaSite.Data;
 
 namespace BlazingPizzaSite.Controllers
 {
-    [ApiController]
     [Route("specials")]
+    [ApiController]
     public class SpecialsController : ControllerBase
     {
         private readonly PizzaStoreContext _context;
