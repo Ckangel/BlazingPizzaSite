@@ -1,0 +1,172 @@
+/* ==========================================================================
+   Pizza Menu Grid Layout
+   ========================================================================== */
+
+.menu-header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.menu-header h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #212529;
+    margin: 0 0 0.5rem 0;
+}
+
+.menu-header p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Pizza Menu Grid Wrapper */
+.pizza-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0;
+}
+
+/* ==========================================================================
+   Individual Pizza Card UI/UX
+   ========================================================================== */
+
+.pizza-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #eef2f5;
+}
+
+/* Smooth pop out effect on card hover */
+.pizza-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Visual Assets Container (Image Wrapper)
+   ========================================================================== */
+
+.pizza-image-wrapper {
+    width: 100%;
+    height: 220px;
+    background-color: #f8f9fa;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Targets both standard images and our SVG custom files seamlessly */
+.pizza-image-wrapper img, 
+.pizza-image-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Subtle image zoom animation on hover */
+.pizza-card:hover .pizza-image-wrapper img,
+.pizza-card:hover .pizza-image-wrapper svg {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Text Content Metadata Styling
+   ========================================================================== */
+
+.pizza-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.pizza-info .title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 0.6rem 0;
+    color: #212529;
+    letter-spacing: -0.3px;
+}
+
+.pizza-info .description {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.5;
+    margin: 0 0 1.75rem 0;
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   Action Area (Price & Interactive Triggers)
+   ========================================================================== */
+
+.pizza-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+/* Ghana Cedis Style Design Rules */
+.pizza-footer .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #e67e22; /* Warm, premium food-branding orange */
+}
+
+/* Prepends the official Ghana Cedi notation cleanly */
+.pizza-footer .price::before {
+    content: "GH₵ ";
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-right: 2px;
+}
+
+/* ==========================================================================
+   Loading State Utilities (Spinner & Placeholders)
+   ========================================================================== */
+
+.loading-container {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: #6c757d;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.06);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border-left-color: #d9534f; /* Matches your accent button color */
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1.25rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.no-specials {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px dashed #dee2e6;
+    color: #6c757d;
+    font-size: 1.1rem;
+}

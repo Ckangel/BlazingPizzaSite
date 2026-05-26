@@ -194,6 +194,7 @@ C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\BlazingPizzaSite.sourcelink.jso
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\Components\Pages\Index.razor.rz.scp.css
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\bundle\BlazingPizzaSite.styles.css
@@ -201,10 +202,11 @@ C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\projectbundle\Blazing
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\uuohz0ru9p-{0}-c22xwiyl9v-c22xwiyl9v.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\ygzu0tex2w-{0}-bpk8xqwxhs-bpk8xqwxhs.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\s5jw1is7gw-{0}-8inm30yfxf-8inm30yfxf.gz
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\e44m9yf56x-{0}-lt1yj53kkt-lt1yj53kkt.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\nxajf5p30j-{0}-ej96puwv3k-ej96puwv3k.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\2clilkke3y-{0}-cj5793hgrt-cj5793hgrt.gz
-C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\6q7namhfrv-{0}-ky5qiedmks-ky5qiedmks.gz
-C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\m9vgrd2p5a-{0}-ky5qiedmks-ky5qiedmks.gz
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\6q7namhfrv-{0}-j2mg4c534t-j2mg4c534t.gz
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\m9vgrd2p5a-{0}-j2mg4c534t-j2mg4c534t.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\staticwebassets.development.json

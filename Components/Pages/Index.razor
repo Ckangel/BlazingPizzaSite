@@ -1,42 +1,74 @@
 @page "/"
-@using BlazingPizzaSite
 @inject HttpClient HttpClient
+@using BlazingPizzaSite.Data
 
-<h3>Pizza Specials</h3>
-
-@if (specials == null)
-{
-    <p><em>Loading...</em></p>
-}
-else if (!specials.Any())
-{
-    <p>No specials available.</p>
-}
-else
-{
-    <div class="specials-list">
-        @foreach (var special in specials)
-        {
-            <div class="special-card">
-                <h4>@special.Size Pizza</h4>
-                <p>Base Price: ₵@special.GetBasePrice()</p>
-                <ul>
-                    @foreach (var topping in special.Toppings)
-                    {
-                        <li>@topping.Name (₵@topping.Price)</li>
-                    }
-                </ul>
-            </div>
-        }
+<div class="main-content">
+    <div class="menu-header">
+        <h2>Our Pizza Specials</h2>
+        <p>Select a masterpiece from our oven or customize your own selection below.</p>
     </div>
-}
+
+    @if (specials == null)
+    {
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p>Loading our delicious menu specials...</p>
+        </div>
+    }
+    else if (!specials.Any())
+    {
+        <div class="no-specials">
+            <p>No pizza specials are available at the moment. Please check back soon!</p>
+        </div>
+    }
+    else
+    {
+        <div class="pizza-cards">
+            @foreach (var special in specials)
+            {
+                <div class="pizza-card">
+                    <div class="pizza-image-wrapper">
+                        <img src="img/pizzas/cheese.jpg" alt="Pizza Layout" />
+                    </div>
+                    <div class="pizza-info">
+                        <h3 class="title">@special.Size Pizza</h3>
+
+                        <p class="description">
+                            @if (special.Toppings != null && special.Toppings.Any())
+                            {
+                                <span>Topped with: @string.Join(", ", special.Toppings.Select(t => t.Name))</span>
+                            }
+                            else
+                            {
+                                <span>Classic cheese and tomato base.</span>
+                            }
+                        </p>
+
+                        <div class="pizza-footer">
+                            <span class="price">12.99</span>
+                            <button class="btn-pizza">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
 
 @code {
-    private List<Pizza> specials = new();
+    // Perfectly matches the IEnumerable<Pizza> returned by your SpecialsController
+    private List<Pizza>? specials;
 
     protected override async Task OnInitializedAsync()
     {
-        specials = await HttpClient.GetFromJsonAsync<List<Pizza>>("specials")
-                   ?? new List<Pizza>();
+        try
+        {
+            specials = await HttpClient.GetFromJsonAsync<List<Pizza>>("specials");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching pizza specials: {ex.Message}");
+            specials = new List<Pizza>();
+        }
     }
 }
