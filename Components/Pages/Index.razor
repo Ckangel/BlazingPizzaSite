@@ -5,7 +5,7 @@
 <div class="main-content">
     <div class="menu-header">
         <h2>Our Pizza Specials</h2>
-        <p>Select a masterpiece from our oven or customize your own selection below.</p>
+        <p>Select a local masterpiece fresh from our ovens. Handcrafted in Ghana.</p>
     </div>
 
     @if (specials == null)
@@ -26,26 +26,59 @@
         <div class="pizza-cards">
             @foreach (var special in specials)
             {
+                string pizzaImageUrl =
+   "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=60";
+                decimal basePrice = 120.00m;
+
+                if (special.Toppings != null)
+                {
+                    var toppingNames = special.Toppings.Select(t => t.Name.ToLower()).ToList();
+
+                    if (toppingNames.Contains("bacon") || toppingNames.Contains("pepperoni") || toppingNames.Contains("ham"))
+                    {
+                        pizzaImageUrl = "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&auto=format&fit=crop&q=60";
+                        basePrice = 165.00m;
+                    }
+                    else if (toppingNames.Contains("mushroom") || toppingNames.Contains("pineapple") ||
+        toppingNames.Contains("salad"))
+                    {
+                        pizzaImageUrl = "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60";
+                        basePrice = 140.00m;
+                    }
+                    else if (special.Size == "Large")
+                    {
+                        pizzaImageUrl = "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500&auto=format&fit=crop&q=60";
+                        basePrice = 150.00m;
+                    }
+                }
+
                 <div class="pizza-card">
                     <div class="pizza-image-wrapper">
-                        <img src="img/pizzas/cheese.jpg" alt="Pizza Layout" />
+                        <img src="@pizzaImageUrl" alt="@special.Size Pizza Menu Item"
+                             style="width:100%; height:100%; object-fit:cover;" />
                     </div>
                     <div class="pizza-info">
                         <h3 class="title">@special.Size Pizza</h3>
 
-                        <p class="description">
+                        <div class="description">
                             @if (special.Toppings != null && special.Toppings.Any())
                             {
-                                <span>Topped with: @string.Join(", ", special.Toppings.Select(t => t.Name))</span>
+                                <p style="font-weight: 600; margin-bottom: 0.5rem; color: #495057;">Includes Toppings:</p>
+                                <ul style="padding-left: 1.25rem; margin: 0;">
+                                    @foreach (var topping in special.Toppings)
+                                    {
+                                        <li>@topping.Name (GH₵ @topping.Price)</li>
+                                    }
+                                </ul>
                             }
                             else
                             {
-                                <span>Classic cheese and tomato base.</span>
+                                <span>Classic crust with signature sauce and premium melted cheese.</span>
                             }
-                        </p>
+                        </div>
 
                         <div class="pizza-footer">
-                            <span class="price">12.99</span>
+                            <span class="price">@basePrice.ToString("N2")</span>
                             <button class="btn-pizza">Order Now</button>
                         </div>
                     </div>
@@ -56,7 +89,6 @@
 </div>
 
 @code {
-    // Perfectly matches the IEnumerable<Pizza> returned by your SpecialsController
     private List<Pizza>? specials;
 
     protected override async Task OnInitializedAsync()

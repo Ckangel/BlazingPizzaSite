@@ -1,32 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="app-container">
+    <header class="top-bar">
+        <a class="logo" href="">
+            <span style="font-size: 2rem; margin-right: 0.5rem;">🍕</span>
+            <span>Blazing Pizza</span>
+        </a>
+        <nav class="links">
+            <a href="" style="color: white; margin-right: 15px; text-decoration: none; font-weight: 600;">Home</a>
+            <a href="myorders" style="color: white; text-decoration: none; font-weight: 600;">My Orders</a>
+        </nav>
+    </header>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/blazor" target="_blank">About Blazor</a>
-        </div>
-
-        <div class="content px-4">
-            @Body
-        </div>
+    <main class="main-content">
+        @Body
     </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            © 2026 - Charles Kingsley Ajeigbe | Ghana
-        </div>
+    <footer
+        style="background-color: #212529; color: #6c757d; text-align: center; padding: 1.5rem; margin-top: auto; border-top: 1px solid #343a40; font-size: 0.9rem;">
+        &copy; 2026 - Charles Kingsley Ajeigbe | Ghana
     </footer>
-
 </div>
-
-@code {
-    // Utility method for formatting amounts in Ghanaian Cedis
-    public static string FormatCedis(decimal amount)
-    {
-        return string.Format("₵{0:N2}", amount);
-    }
-}

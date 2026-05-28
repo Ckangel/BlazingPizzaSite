@@ -1,4 +1,5 @@
-using BlazingPizzaSite;
+using BlazingPizzaSite;           // Triggers root namespace tracking
+using BlazingPizzaSite.Components;  // Triggers the folder holding App.razor
 using BlazingPizzaSite.Data;
 using Microsoft.EntityFrameworkCore;
 
