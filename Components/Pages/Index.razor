@@ -2,94 +2,136 @@
 @inject HttpClient HttpClient
 @using BlazingPizzaSite.Data
 
-<div class="main-content">
-    <div class="menu-header">
-        <h2>Our Pizza Specials</h2>
-        <p>Select a local masterpiece fresh from our ovens. Handcrafted in Ghana.</p>
+<div class="store-layout">
+    <div class="main-menu">
+        <div class="menu-header">
+            <h2>Our Pizza Specials</h2>
+            <p>Select a local masterpiece fresh from our ovens. Handcrafted in Ghana.</p>
+        </div>
+
+        @if (specials == null)
+        {
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <p>Loading our delicious menu specials...</p>
+            </div>
+        }
+        else if (!specials.Any())
+        {
+            <div class="no-specials">
+                <p>No pizza specials are available at the moment. Please check back soon!</p>
+            </div>
+        }
+        else
+        {
+            <div class="pizza-cards">
+                @foreach (var special in specials)
+                {
+                    string pizzaImageUrl =
+    "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=60";
+                    decimal basePrice = 120.00m;
+
+                    if (special.Toppings != null)
+                    {
+                        var toppingNames = special.Toppings.Select(t => t.Name.ToLower()).ToList();
+
+                        if (toppingNames.Contains("bacon") || toppingNames.Contains("pepperoni") || toppingNames.Contains("ham"))
+                        {
+                            pizzaImageUrl =
+     "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&auto=format&fit=crop&q=60";
+                            basePrice = 165.00m;
+                        }
+                        else if (toppingNames.Contains("mushroom") || toppingNames.Contains("pineapple") ||
+            toppingNames.Contains("salad"))
+                        {
+                            pizzaImageUrl =
+       "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60";
+                            basePrice = 140.00m;
+                        }
+                        else if (special.Size == "Large")
+                        {
+                            pizzaImageUrl =
+     "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500&auto=format&fit=crop&q=60";
+                            basePrice = 150.00m;
+                        }
+                    }
+
+                    <div class="pizza-card" @onclick="() => AddToOrder(special, basePrice)">
+                        <div class="pizza-image-wrapper">
+                            <img src="@pizzaImageUrl" alt="@special.Size Pizza Menu Item" />
+                        </div>
+                        <div class="pizza-info">
+                            <h3 class="title">@special.Size Pizza</h3>
+                            <div class="description">
+                                @if (special.Toppings != null && special.Toppings.Any())
+                                {
+                                    <span>Includes: @string.Join(", ", special.Toppings.Select(t => t.Name))</span>
+                                }
+                                else
+                                {
+                                    <span>Classic crust with signature sauce and premium melted cheese.</span>
+                                }
+                            </div>
+                            <div class="pizza-footer">
+                                <span class="price">@basePrice.ToString("N2")</span>
+                                <button class="btn-pizza">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
     </div>
 
-    @if (specials == null)
-    {
-        <div class="loading-container">
-            <div class="spinner"></div>
-            <p>Loading our delicious menu specials...</p>
+    <div class="order-sidebar">
+        <div class="sidebar-header">
+            <h3>Your Order</h3>
         </div>
-    }
-    else if (!specials.Any())
-    {
-        <div class="no-specials">
-            <p>No pizza specials are available at the moment. Please check back soon!</p>
-        </div>
-    }
-    else
-    {
-        <div class="pizza-cards">
-            @foreach (var special in specials)
-            {
-                string pizzaImageUrl =
-   "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop&q=60";
-                decimal basePrice = 120.00m;
 
-                if (special.Toppings != null)
+        @if (currentOrder.Pizzas == null || !currentOrder.Pizzas.Any())
+        {
+            <div class="empty-cart">
+                <span style="font-size: 3.5rem;">🛒</span>
+                <p>Your basket is currently empty.</p>
+                <p style="font-size: 0.85rem; color: #a1a1a1;">Choose a pizza to start building your order!</p>
+            </div>
+        }
+        else
+        {
+            <div class="cart-items">
+                @foreach (var pizza in currentOrder.Pizzas)
                 {
-                    var toppingNames = special.Toppings.Select(t => t.Name.ToLower()).ToList();
-
-                    if (toppingNames.Contains("bacon") || toppingNames.Contains("pepperoni") || toppingNames.Contains("ham"))
-                    {
-                        pizzaImageUrl = "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&auto=format&fit=crop&q=60";
-                        basePrice = 165.00m;
-                    }
-                    else if (toppingNames.Contains("mushroom") || toppingNames.Contains("pineapple") ||
-        toppingNames.Contains("salad"))
-                    {
-                        pizzaImageUrl = "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60";
-                        basePrice = 140.00m;
-                    }
-                    else if (special.Size == "Large")
-                    {
-                        pizzaImageUrl = "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=500&auto=format&fit=crop&q=60";
-                        basePrice = 150.00m;
-                    }
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <span class="item-title">@pizza.Size Pizza</span>
+                            @if (pizza.Toppings != null && pizza.Toppings.Any())
+                            {
+                                <span class="item-subtext">+ @string.Join(", ", pizza.Toppings.Select(t => t.Name))</span>
+                            }
+                        </div>
+                        <div class="item-actions">
+                            <button class="delete-btn" @onclick="() => RemovePizza(pizza)">❌</button>
+                        </div>
+                    </div>
                 }
+            </div>
 
-                <div class="pizza-card">
-                    <div class="pizza-image-wrapper">
-                        <img src="@pizzaImageUrl" alt="@special.Size Pizza Menu Item"
-                             style="width:100%; height:100%; object-fit:cover;" />
-                    </div>
-                    <div class="pizza-info">
-                        <h3 class="title">@special.Size Pizza</h3>
-
-                        <div class="description">
-                            @if (special.Toppings != null && special.Toppings.Any())
-                            {
-                                <p style="font-weight: 600; margin-bottom: 0.5rem; color: #495057;">Includes Toppings:</p>
-                                <ul style="padding-left: 1.25rem; margin: 0;">
-                                    @foreach (var topping in special.Toppings)
-                                    {
-                                        <li>@topping.Name (GH₵ @topping.Price)</li>
-                                    }
-                                </ul>
-                            }
-                            else
-                            {
-                                <span>Classic crust with signature sauce and premium melted cheese.</span>
-                            }
-                        </div>
-
-                        <div class="pizza-footer">
-                            <span class="price">@basePrice.ToString("N2")</span>
-                            <button class="btn-pizza">Order Now</button>
-                        </div>
-                    </div>
+            <div class="sidebar-footer">
+                <div class="total-row">
+                    <span>Total:</span>
+                    <span class="total-price">GH₵ @CalculateOrderTotal().ToString("N2")</span>
                 </div>
-            }
-        </div>
-    }
+                <button class="checkout-btn" @onclick="NavigateToCheckout">
+                    Place Order 🚀
+                </button>
+            </div>
+        }
+    </div>
 </div>
 
 @code {
     private List<Pizza>? specials;
+    private Order currentOrder = new Order { Pizzas = new List<Pizza>() };
 
     protected override async Task OnInitializedAsync()
     {
@@ -102,5 +144,48 @@
             Console.WriteLine($"Error fetching pizza specials: {ex.Message}");
             specials = new List<Pizza>();
         }
+    }
+
+    private void AddToOrder(Pizza selectedPizza, decimal configuredPrice)
+    {
+        var cartPizza = new Pizza
+        {
+            PizzaId = 0,
+            Size = selectedPizza.Size,
+
+            Toppings = selectedPizza.Toppings != null ? new List<Topping>(selectedPizza.Toppings) : new List<Topping>()
+        };
+
+        currentOrder.Pizzas.Add(cartPizza);
+    }
+
+    private void RemovePizza(Pizza targetPizza)
+    {
+        currentOrder.Pizzas.Remove(targetPizza);
+    }
+
+    private decimal CalculateOrderTotal()
+    {
+        // Simple base calculation matching your local Ghanaian flat layout pricing setup
+        decimal runningTotal = 0;
+        foreach (var item in currentOrder.Pizzas)
+        {
+            if (item.Size == "Large") runningTotal += 150.00m;
+            else if (item.Size == "Medium") runningTotal += 140.00m;
+            else runningTotal += 120.00m;
+        }
+        return runningTotal;
+    }
+
+    private void NavigateToCheckout()
+    {
+        Console.WriteLine("Redirecting checkout stream...");
+    }
+
+    // Helper classes representing custom runtime mock objects
+    public class Order
+    {
+        public int OrderId { get; set; }
+        public List<Pizza> Pizzas { get; set; } = new();
     }
 }

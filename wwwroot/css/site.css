@@ -1,83 +1,164 @@
-/* Global Reset & Typography */
-html, body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333333;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Flexible Main Layout Setup */
+.store-layout {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    min-height: calc(100vh - 12rem);
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
+.main-menu {
+    flex: 1;
 }
 
-/* Layout Container */
-.app-container {
+/* ==========================================================================
+   Order Sidebar Pane Styling
+   ========================================================================== */
+.order-sidebar {
+    width: 380px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef2f5;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    overflow: hidden;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
 }
 
-/* Top Navigation Bar Branding */
-.top-bar {
-    background-color: #373a3c;
-    background-image: linear-gradient(135deg, #373a3c 0%, #212529 100%);
+.sidebar-header {
+    background: #212529;
     color: #ffffff;
-    height: 4.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    font-weight: 700;
 }
 
-.top-bar .logo {
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.empty-cart {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #adb5bd;
+}
+
+.empty-cart p {
+    margin: 0.5rem 0 0 0;
+    font-weight: 600;
+}
+
+/* Active Cart Items Rows Layout */
+.cart-items {
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 0.75rem;
-    font-size: 1.5rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #e67e22;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-title {
     font-weight: 700;
-    color: #ffc107;
-    text-decoration: none;
+    color: #333;
+}
+
+.item-subtext {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
     transition: transform 0.2s ease;
 }
 
-.top-bar .logo:hover {
-    transform: scale(1.02);
+.delete-btn:hover {
+    transform: scale(1.2);
 }
 
-.top-bar .logo img {
-    height: 2.5rem;
-    width: auto;
+/* Sidebar Footer & Action Options */
+.sidebar-footer {
+    padding: 1.25rem;
+    background: #f8f9fa;
+    border-top: 1px solid #eef2f5;
+    margin-top: auto;
 }
 
-/* Main Content Area Wrapper */
-.main-content {
-    flex: 1;
-    padding: 2rem;
-    max-width: 1400px;
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 1rem;
+}
+
+.total-price {
+    color: #28a745;
+}
+
+.checkout-btn {
     width: 100%;
-    margin: 0 auto;
-}
-
-/* Utility Buttons */
-.btn-pizza {
-    background-color: #d9534f;
-    color: white;
+    background: #d9534f;
+    color: #ffffff;
     border: none;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 20px;
+    padding: 0.85rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: background 0.2s ease;
 }
 
-.btn-pizza:hover {
-    background-color: #c9302c;
+.checkout-btn:hover {
+    background: #c9302c;
 }
 
-.btn-pizza:active {
-    transform: scale(0.98);
+/* Navigation System Styles */
+.nav-tab {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-tab:hover {
+    color: #ffc107;
+}
+
+.page-footer {
+    background-color: #212529;
+    color: #6c757d;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid #343a40;
+    font-size: 0.9rem;
+    width: 100%;
 }
