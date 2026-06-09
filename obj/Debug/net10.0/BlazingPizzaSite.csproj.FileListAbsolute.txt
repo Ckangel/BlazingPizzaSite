@@ -202,7 +202,7 @@ C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\scopedcss\projectbundle\Blazing
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\uuohz0ru9p-{0}-c22xwiyl9v-c22xwiyl9v.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\ygzu0tex2w-{0}-bpk8xqwxhs-bpk8xqwxhs.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\s5jw1is7gw-{0}-8inm30yfxf-8inm30yfxf.gz
-C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\e44m9yf56x-{0}-jdyshmb086-jdyshmb086.gz
+C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\e44m9yf56x-{0}-b44zn2enf6-b44zn2enf6.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\nxajf5p30j-{0}-ej96puwv3k-ej96puwv3k.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\2clilkke3y-{0}-cj5793hgrt-cj5793hgrt.gz
 C:\Users\Dell\BlazingPizzaSite\obj\Debug\net10.0\compressed\6q7namhfrv-{0}-j2mg4c534t-j2mg4c534t.gz
